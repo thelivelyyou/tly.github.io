@@ -4,12 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The Lively You | Zukxi Learning Assistant</title>
+    <meta name="description" content="The Lively You - Awaken your senses with Zukxi, your Slack learning assistant">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
             --primary: #4f46e5;
             --primary-dark: #4338ca;
             --secondary: #10b981;
+            --accent: #f59e0b;
             --dark: #1f2937;
             --light: #f9fafb;
             --gray: #6b7280;
@@ -55,14 +57,26 @@
         .logo {
             display: flex;
             align-items: center;
-            font-weight: 700;
-            font-size: 1.5rem;
-            color: var(--primary);
+            text-decoration: none;
         }
         
-        .logo i {
-            margin-right: 10px;
+        .logo-text {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .logo-main {
+            font-weight: 800;
             font-size: 1.8rem;
+            color: var(--dark);
+            line-height: 1;
+        }
+        
+        .logo-tagline {
+            font-size: 0.7rem;
+            color: var(--gray);
+            letter-spacing: 1.5px;
+            margin-top: 2px;
         }
         
         .nav-links {
@@ -94,6 +108,8 @@
             font-weight: 600;
             cursor: pointer;
             transition: background-color 0.3s;
+            text-decoration: none;
+            display: inline-block;
         }
         
         .cta-button:hover {
@@ -111,10 +127,42 @@
             padding: 100px 0;
             background: linear-gradient(135deg, #f0f4ff 0%, #e6f7ff 100%);
             text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000" opacity="0.05"><polygon fill="%234f46e5" points="0,1000 1000,0 1000,1000"/></svg>');
+            background-size: cover;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .hero-logo {
+            margin-bottom: 30px;
+        }
+        
+        .hero-logo .logo-main {
+            font-size: 4rem;
+            margin-bottom: 10px;
+        }
+        
+        .hero-logo .logo-tagline {
+            font-size: 1.2rem;
+            letter-spacing: 3px;
         }
         
         .hero h1 {
-            font-size: 3.5rem;
+            font-size: 3rem;
             margin-bottom: 20px;
             color: var(--dark);
         }
@@ -124,6 +172,27 @@
             color: var(--gray);
             max-width: 700px;
             margin: 0 auto 40px;
+        }
+        
+        .slack-badge {
+            display: inline-flex;
+            align-items: center;
+            background: white;
+            padding: 8px 16px;
+            border-radius: 24px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            margin-bottom: 30px;
+        }
+        
+        .slack-badge i {
+            color: #e01e5a;
+            font-size: 1.5rem;
+            margin-right: 10px;
+        }
+        
+        .slack-badge span {
+            font-weight: 600;
+            color: var(--dark);
         }
         
         .hero-buttons {
@@ -141,6 +210,8 @@
             font-weight: 600;
             cursor: pointer;
             transition: all 0.3s;
+            text-decoration: none;
+            display: inline-block;
         }
         
         .secondary-button:hover {
@@ -239,6 +310,18 @@
             margin-bottom: 30px;
         }
         
+        .slack-integration {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .slack-integration i {
+            color: #e01e5a;
+            font-size: 2rem;
+        }
+        
         .demo-visual {
             flex: 1;
             background-color: white;
@@ -323,10 +406,65 @@
             justify-content: center;
         }
         
+        /* How It Works */
+        .how-it-works {
+            padding: 100px 0;
+            background-color: white;
+        }
+        
+        .steps {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 50px;
+            position: relative;
+        }
+        
+        .steps::before {
+            content: "";
+            position: absolute;
+            top: 40px;
+            left: 10%;
+            right: 10%;
+            height: 3px;
+            background: var(--gray-light);
+            z-index: 1;
+        }
+        
+        .step {
+            text-align: center;
+            position: relative;
+            z-index: 2;
+            flex: 1;
+            padding: 0 20px;
+        }
+        
+        .step-number {
+            width: 80px;
+            height: 80px;
+            background: var(--primary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            font-weight: bold;
+            margin: 0 auto 20px;
+        }
+        
+        .step h3 {
+            margin-bottom: 10px;
+            font-size: 1.3rem;
+        }
+        
+        .step p {
+            color: var(--gray);
+        }
+        
         /* Testimonials */
         .testimonials {
             padding: 100px 0;
-            background-color: white;
+            background: linear-gradient(135deg, #f0f4ff 0%, #e6f7ff 100%);
         }
         
         .testimonials-grid {
@@ -336,7 +474,7 @@
         }
         
         .testimonial-card {
-            background-color: var(--light);
+            background-color: white;
             border-radius: 10px;
             padding: 30px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
@@ -411,6 +549,8 @@
             font-weight: 600;
             cursor: pointer;
             transition: transform 0.3s;
+            text-decoration: none;
+            display: inline-block;
         }
         
         .white-button:hover {
@@ -426,6 +566,8 @@
             font-weight: 600;
             cursor: pointer;
             transition: all 0.3s;
+            text-decoration: none;
+            display: inline-block;
         }
         
         .outline-button:hover {
@@ -499,14 +641,34 @@
         @media (max-width: 768px) {
             .nav-links {
                 display: none;
+                position: absolute;
+                top: 80px;
+                left: 0;
+                right: 0;
+                background-color: white;
+                flex-direction: column;
+                padding: 20px;
+                box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+            }
+            
+            .nav-links.active {
+                display: flex;
+            }
+            
+            .nav-links li {
+                margin: 10px 0;
             }
             
             .mobile-menu {
                 display: block;
             }
             
-            .hero h1 {
+            .hero-logo .logo-main {
                 font-size: 2.5rem;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
             }
             
             .hero-buttons, .cta-buttons {
@@ -517,6 +679,15 @@
             .demo-container {
                 flex-direction: column;
             }
+            
+            .steps {
+                flex-direction: column;
+                gap: 40px;
+            }
+            
+            .steps::before {
+                display: none;
+            }
         }
     </style>
 </head>
@@ -525,17 +696,19 @@
     <header>
         <div class="container">
             <nav>
-                <div class="logo">
-                    <i class="fas fa-brain"></i>
-                    <span>The Lively You</span>
-                </div>
+                <a href="#" class="logo">
+                    <div class="logo-text">
+                        <div class="logo-main">The Lively You</div>
+                        <div class="logo-tagline">Awaken your senses</div>
+                    </div>
+                </a>
                 <ul class="nav-links">
                     <li><a href="#features">Features</a></li>
                     <li><a href="#zukxi">Zukxi</a></li>
+                    <li><a href="#how-it-works">How It Works</a></li>
                     <li><a href="#testimonials">Testimonials</a></li>
-                    <li><a href="#pricing">Pricing</a></li>
                 </ul>
-                <button class="cta-button">Get Started</button>
+                <a href="#cta" class="cta-button">Add to Slack</a>
                 <div class="mobile-menu">
                     <i class="fas fa-bars"></i>
                 </div>
@@ -546,11 +719,25 @@
     <!-- Hero Section -->
     <section class="hero">
         <div class="container">
-            <h1>Meet Zukxi, Your Personal Learning Assistant</h1>
-            <p>Zukxi helps you learn faster, retain more, and achieve your goals with personalized guidance and AI-powered insights.</p>
-            <div class="hero-buttons">
-                <button class="cta-button">Try Zukxi Free</button>
-                <button class="secondary-button">See How It Works</button>
+            <div class="hero-content">
+                <div class="hero-logo">
+                    <div class="logo-text">
+                        <div class="logo-main">The Lively You</div>
+                        <div class="logo-tagline">Awaken your senses</div>
+                    </div>
+                </div>
+                
+                <div class="slack-badge">
+                    <i class="fab fa-slack"></i>
+                    <span>Slack Bot</span>
+                </div>
+                
+                <h1>Zukxi Learning Assistant</h1>
+                <p>Ask. Learn. Collaborate. Zukxi helps your team learn faster, retain more, and achieve goals with AI-powered guidance directly in Slack.</p>
+                <div class="hero-buttons">
+                    <a href="#cta" class="cta-button">Add to Slack</a>
+                    <a href="#zukxi" class="secondary-button">See How It Works</a>
+                </div>
             </div>
         </div>
     </section>
@@ -559,30 +746,30 @@
     <section class="features" id="features">
         <div class="container">
             <div class="section-title">
-                <h2>Why Choose Zukxi?</h2>
-                <p>Our AI-powered learning assistant adapts to your unique learning style and goals.</p>
+                <h2>Why Teams Love Zukxi</h2>
+                <p>Our AI-powered learning assistant integrates seamlessly with Slack to transform how your team learns and collaborates.</p>
             </div>
             <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fab fa-slack"></i>
+                    </div>
+                    <h3>Slack Integration</h3>
+                    <p>Zukxi works directly in your Slack workspace. No new apps to install, no context switching - just seamless learning.</p>
+                </div>
                 <div class="feature-card">
                     <div class="feature-icon">
                         <i class="fas fa-robot"></i>
                     </div>
                     <h3>AI-Powered Insights</h3>
-                    <p>Zukxi analyzes your learning patterns to provide personalized recommendations and optimize your study sessions.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-chart-line"></i>
-                    </div>
-                    <h3>Progress Tracking</h3>
-                    <p>Monitor your learning journey with detailed analytics and visual progress reports that highlight your achievements.</p>
+                    <p>Zukxi analyzes team learning patterns to provide personalized recommendations and optimize knowledge sharing.</p>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon">
                         <i class="fas fa-users"></i>
                     </div>
-                    <h3>Collaborative Learning</h3>
-                    <p>Connect with other learners, share insights, and participate in group challenges to enhance your learning experience.</p>
+                    <h3>Team Collaboration</h3>
+                    <p>Create shared learning channels, participate in group challenges, and track team progress together.</p>
                 </div>
             </div>
         </div>
@@ -593,9 +780,20 @@
         <div class="container">
             <div class="demo-container">
                 <div class="demo-content">
-                    <h2>Experience Zukxi in Action</h2>
-                    <p>Zukxi understands your questions and provides thoughtful, personalized responses to help you learn more effectively. Whether you're studying for exams, learning a new skill, or exploring a topic, Zukxi is here to guide you.</p>
-                    <button class="cta-button">Start Conversation</button>
+                    <div class="slack-integration">
+                        <i class="fab fa-slack"></i>
+                        <h2>Zukxi in Slack</h2>
+                    </div>
+                    <p>Zukxi understands your questions and provides thoughtful, personalized responses right in your Slack channels. Whether your team is studying for certifications, learning new skills, or exploring industry topics, Zukxi is there to guide you.</p>
+                    <div class="feature-card">
+                        <h3>Key Features</h3>
+                        <ul style="padding-left: 20px; margin-top: 10px;">
+                            <li style="margin-bottom: 8px;">Instant answers to team questions</li>
+                            <li style="margin-bottom: 8px;">Personalized learning recommendations</li>
+                            <li style="margin-bottom: 8px;">Progress tracking for individuals and teams</li>
+                            <li style="margin-bottom: 8px;">Integration with your existing Slack channels</li>
+                        </ul>
+                    </div>
                 </div>
                 <div class="demo-visual">
                     <div class="chat-header">
@@ -607,25 +805,52 @@
                     </div>
                     <div class="chat-messages">
                         <div class="message zukxi-message">
-                            Hi there! I'm Zukxi, your learning assistant. How can I help you today?
+                            Hi team! I'm Zukxi, your learning assistant in Slack. How can I help you today?
                         </div>
                         <div class="message user-message">
-                            Can you explain machine learning in simple terms?
+                            Can you explain machine learning in simple terms for our new hires?
                         </div>
                         <div class="message zukxi-message">
                             Of course! Machine learning is like teaching a computer to recognize patterns and make decisions based on examples, rather than giving it explicit instructions for every scenario.
                         </div>
                         <div class="message user-message">
-                            That makes sense. What are some real-world applications?
+                            That makes sense. What are some real-world applications our team should know about?
                         </div>
                         <div class="message zukxi-message">
                             Great question! Machine learning powers recommendation systems (like Netflix or Amazon), voice assistants, fraud detection, medical diagnosis, and self-driving cars, among many others.
                         </div>
                     </div>
                     <div class="chat-input">
-                        <input type="text" placeholder="Type your message...">
+                        <input type="text" placeholder="Type your message in Slack...">
                         <button><i class="fas fa-paper-plane"></i></button>
                     </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works -->
+    <section class="how-it-works" id="how-it-works">
+        <div class="container">
+            <div class="section-title">
+                <h2>How Zukxi Works in Slack</h2>
+                <p>Get started with Zukxi in just three simple steps</p>
+            </div>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3>Add to Slack</h3>
+                    <p>Install Zukxi from the Slack App Directory with one click</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3>Invite Zukxi</h3>
+                    <p>Add @Zukxi to any channel or DM to start learning together</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3>Ask & Learn</h3>
+                    <p>Start asking questions and watch your team's knowledge grow</p>
                 </div>
             </div>
         </div>
@@ -635,43 +860,43 @@
     <section class="testimonials" id="testimonials">
         <div class="container">
             <div class="section-title">
-                <h2>What Learners Say About Zukxi</h2>
-                <p>Join thousands of users who have transformed their learning experience with Zukxi.</p>
+                <h2>What Teams Say About Zukxi</h2>
+                <p>Join thousands of teams who have transformed their learning culture with Zukxi.</p>
             </div>
             <div class="testimonials-grid">
                 <div class="testimonial-card">
                     <div class="testimonial-text">
-                        "Zukxi helped me prepare for my certification exam in half the time I expected. The personalized study plan was exactly what I needed!"
+                        "Zukxi helped our team prepare for certification exams in half the time. The personalized study plans were exactly what we needed!"
                     </div>
                     <div class="testimonial-author">
                         <div class="author-avatar">JS</div>
                         <div class="author-info">
                             <h4>Jamie Smith</h4>
-                            <p>Software Developer</p>
+                            <p>Engineering Team Lead</p>
                         </div>
                     </div>
                 </div>
                 <div class="testimonial-card">
                     <div class="testimonial-text">
-                        "As a visual learner, I struggled with traditional study methods. Zukxi's adaptive approach and visual explanations made complex topics click for me."
+                        "As a distributed team, we struggled with consistent learning. Zukxi's Slack integration made knowledge sharing seamless and effective."
                     </div>
                     <div class="testimonial-author">
                         <div class="author-avatar">AR</div>
                         <div class="author-info">
                             <h4>Alex Rivera</h4>
-                            <p>Graphic Designer</p>
+                            <p>Product Design Director</p>
                         </div>
                     </div>
                 </div>
                 <div class="testimonial-card">
                     <div class="testimonial-text">
-                        "The progress tracking and weekly insights keep me motivated. I've been using Zukxi for 3 months and my retention has improved dramatically."
+                        "The team progress tracking and weekly insights keep everyone motivated. Our knowledge retention has improved dramatically since using Zukxi."
                     </div>
                     <div class="testimonial-author">
                         <div class="author-avatar">TP</div>
                         <div class="author-info">
                             <h4>Taylor Park</h4>
-                            <p>Medical Student</p>
+                            <p>Learning & Development Manager</p>
                         </div>
                     </div>
                 </div>
@@ -680,13 +905,13 @@
     </section>
 
     <!-- CTA Section -->
-    <section class="cta-section">
+    <section class="cta-section" id="cta">
         <div class="container">
-            <h2>Ready to Transform Your Learning?</h2>
-            <p>Join The Lively You community today and discover how Zukxi can help you achieve your learning goals faster and more effectively.</p>
+            <h2>Ready to Transform Team Learning?</h2>
+            <p>Join The Lively You community today and discover how Zukxi can help your team achieve learning goals faster and more effectively - right in Slack.</p>
             <div class="cta-buttons">
-                <button class="white-button">Start Free Trial</button>
-                <button class="outline-button">Schedule a Demo</button>
+                <a href="#" class="white-button">Add to Slack</a>
+                <a href="#" class="outline-button">Schedule a Demo</a>
             </div>
         </div>
     </section>
@@ -696,22 +921,25 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-column">
-                    <h3>The Lively You</h3>
-                    <p>Empowering learners worldwide with AI-powered personalized education.</p>
+                    <div class="logo-text">
+                        <div class="logo-main" style="color: white; font-size: 1.5rem;">The Lively You</div>
+                        <div class="logo-tagline" style="color: #d1d5db;">Awaken your senses</div>
+                    </div>
+                    <p style="margin-top: 15px; color: #d1d5db;">Empowering teams worldwide with AI-powered learning in Slack.</p>
                     <div class="social-links">
                         <a href="#"><i class="fab fa-twitter"></i></a>
                         <a href="#"><i class="fab fa-linkedin"></i></a>
                         <a href="#"><i class="fab fa-github"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-slack"></i></a>
                     </div>
                 </div>
                 <div class="footer-column">
                     <h3>Product</h3>
                     <ul class="footer-links">
-                        <li><a href="#">Features</a></li>
-                        <li><a href="#">Pricing</a></li>
+                        <li><a href="#features">Features</a></li>
+                        <li><a href="#pricing">Pricing</a></li>
+                        <li><a href="#zukxi">Slack Integration</a></li>
                         <li><a href="#">Use Cases</a></li>
-                        <li><a href="#">Integrations</a></li>
                     </ul>
                 </div>
                 <div class="footer-column">
@@ -734,7 +962,7 @@
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2023 The Lively You. All rights reserved.</p>
+                <p>&copy; 2023 The Lively You. All rights reserved. Zukxi Learning Assistant is a Slack Bot integration.</p>
             </div>
         </div>
     </footer>
@@ -748,7 +976,7 @@
             
             if (mobileMenu) {
                 mobileMenu.addEventListener('click', function() {
-                    navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
+                    navLinks.classList.toggle('active');
                 });
             }
             
@@ -796,16 +1024,36 @@
             
             function getZukxiResponse(message) {
                 const responses = [
-                    "That's an interesting question! Let me help you understand that better.",
-                    "I'd be happy to explain that concept. Here's what you need to know...",
-                    "Great question! Based on your learning style, here's how I would approach that...",
-                    "I can help with that! Let me break it down into simpler concepts for you.",
-                    "That's a common area of confusion. Let me clarify that for you.",
-                    "I notice you're asking about a complex topic. Would you like me to provide some examples to make it clearer?"
+                    "That's an interesting question! Let me help your team understand that better.",
+                    "I'd be happy to explain that concept. Here's what your team should know...",
+                    "Great question for team learning! Based on your team's needs, here's how I would approach that...",
+                    "I can help with that! Let me break it down into simpler concepts for your team.",
+                    "That's a common area teams ask about. Let me clarify that for everyone.",
+                    "I notice your team is asking about a complex topic. Would you like me to provide some examples to make it clearer?"
                 ];
                 
                 return responses[Math.floor(Math.random() * responses.length)];
             }
+            
+            // Smooth scrolling for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                        
+                        // Close mobile menu if open
+                        navLinks.classList.remove('active');
+                    }
+                });
+            });
         });
     </script>
 </body>
